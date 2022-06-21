@@ -1,0 +1,62 @@
+﻿
+@{
+    @model ServicoModel;
+    var Servico = (List<ServicoView>)(@ViewData["Servicos"]);
+}
+<br />
+<form asp-action="SelecioneServico" asp-controller="Home">
+    <input asp-for="JsonServico" hidden />
+    <input asp-for="ServicoContratado.idCarroCliente" value="@ViewData["idCarroCliente"]" hidden />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Selecione serviço</td>
+                <td>idCarro</td>
+                <td>Marca</td>
+                <td>Modelo</td>
+                <td>Servico</td>
+                <td>Peca</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Servico.Count > 0)
+            {
+
+                @foreach (var item in Servico)
+                {
+                    <tr>
+                        <td><input class="ck_sel_servico" type="checkbox" value="@item.idServico"></td>
+                        <td>@item.idCarro</td>
+                        <td>@item.Marca</td>
+                        <td>@item.Modelo</td>
+                        <td>@item.Servico</td>
+                        <td>@item.Peca</td>                       
+                    </tr>
+                }
+            }
+            else
+            {
+                <h4>Sem Registros</h4>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary btn-sm" onclick="GetJson()">Avançar</button>
+</form>
+
+<script>
+    function GetJson() {
+        var Mtz = [];
+        var iTotal = $(".ck_sel_servico").length;
+        for (var i = 0; i <= iTotal - 1; i++) {
+            if ($(".ck_sel_servico")[i].checked) {
+                Mtz.push(
+                    {
+                        idServico: $(".ck_sel_servico")[i].value
+                    }
+                );
+            }
+        }
+        $("#JsonServico").val(JSON.stringify(Mtz));
+    }
+</script>
+

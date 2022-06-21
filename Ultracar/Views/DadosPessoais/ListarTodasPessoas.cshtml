@@ -1,0 +1,29 @@
+﻿@model DadosPessoais
+
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>#</td>
+            <td>ID</td>
+            <td>NOME</td>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in (List<DadosPessoais>)ViewBag.ListaClientes)
+        {
+            <tr>
+                @*<td style="width:80px;"><button class="btn btn-default" onclick="registrar(@item.Id.ToString())">Editar</button></td>
+                <td style="width:80px;"><button class="btn btn-danger" onclick="excluir(@item.Id.ToString())">Excluir</button></td>*@
+                <td>@item.Nome.ToString()</td>
+                <td>@item.idDadosPessoais.ToString()</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<button class="btn btn-block btn-primary" onclick="registrar()">Registrar Cliente</button>

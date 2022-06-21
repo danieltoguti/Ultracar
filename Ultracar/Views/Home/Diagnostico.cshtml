@@ -1,0 +1,63 @@
+﻿@{
+    var CarroCliente = (CarroClienteView)(@ViewData["CarroCliente"]);
+    var Servico = (List<ServicoContratadoView>)(@ViewData["Servico"]);
+}
+<br />
+<div class="card">
+    <div class="card-header bg-dark text-white"><h6>Dados do Carro e Proprietário</h6></div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>idCarro</td>
+                <td>idCarroCliente</td>
+                <td>Proprietário</td>
+                <td>Marca</td>
+                <td>Modelo</td>
+                <td>Cor</td>
+                <td>Ano de Fabricação</td>
+                <td>Ano do Modelo</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@CarroCliente.idCarro</td>
+                <td>@CarroCliente.idCarroCliente</td>
+                <td>@CarroCliente.Proprietario</td>
+                <td>@CarroCliente.Marca</td>
+                <td>@CarroCliente.Modelo</td>
+                <td>@CarroCliente.Cor</td>
+                <td>@CarroCliente.AnoFabricacao</td>
+                <td>@CarroCliente.AnoModelo</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="card-header bg-dark text-white"><h6>Serviços Selecionados</h6></div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Servico</td>
+                <td>Preco</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Servico.Count > 0)
+            {
+
+                @foreach (var item in Servico)
+                {
+                    <tr>
+                        <td>@item.Servico</td>
+                        <td>@item.Preco.ToString("C")</td>                        
+                    </tr>
+
+                }
+            }
+            else
+            {
+                <h4>Sem Registros</h4>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+

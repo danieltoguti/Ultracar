@@ -1,0 +1,93 @@
+﻿
+@{
+    @model CarroModel;
+    var CarroCliente = (CarroClienteView)(@ViewData["CarroCliente"]);
+    var Funcionarios = (List<SelectListItem>)(@ViewData["Funcionarios"]);
+}
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>idCarro</td>
+            <td>idCarroCliente</td>
+            <td>Proprietário</td>
+            <td>Marca</td>
+            <td>Modelo</td>
+            <td>Cor</td>
+            <td>Ano de Fabricação</td>
+            <td>Ano do Modelo</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@CarroCliente.idCarro</td>
+            <td>@CarroCliente.idCarroCliente</td>
+            <td>@CarroCliente.Proprietario</td>
+            <td>@CarroCliente.Marca</td>
+            <td>@CarroCliente.Modelo</td>
+            <td>@CarroCliente.Cor</td>
+            <td>@CarroCliente.AnoFabricacao</td>
+            <td>@CarroCliente.AnoModelo</td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<h5>Check List do Carro</h5>
+<form asp-action="CheckList" asp-controller="Home">
+    <input asp-for="JsonCheckin" hidden />
+    <input asp-for="CarroCheckin.idCarroCliente" value="@CarroCliente.idCarroCliente" hidden />
+    <label>Pneus</label>
+    <select class="ck_sel_nome">
+        <option value="Pneus:Novos">Novos</option>
+        <option value="Pneus:Meia Vida">Meia Vida</option>
+        <option value="Pneus:Bem gastos">Bem gastos</option>
+    </select><br />
+    <label>Lateral direita</label>
+    <select class="ck_sel_nome">
+        <option value="Lateral direita:Novos">Novos</option>
+        <option value="Lateral direita:Riscado">Riscado</option>
+        <option value="Lateral direita:Amassado">Amassado</option>
+    </select><br />
+    <label>Lateral esquerda</label>
+    <select class="ck_sel_nome">
+        <option value="Lateral esquerda:Novos">Novos</option>
+        <option value="Lateral esquerda:Riscado">Riscado</option>
+        <option value="Lateral esquerda:Amassado">Amassado</option>
+    </select><br />
+    <label>Bancos</label>
+    <select class="ck_sel_nome">
+        <option value="Bancos:Novos">Novos</option>
+        <option value="Bancos:Meia Vida">Meia Vida</option>
+        <option value="Bancos:Bem gastos">Bem gastos</option>
+    </select><br /><br />
+    <label>Comentário do Cliente</label><br />
+    <textarea asp-for="Diagnostico.DescricaoCliente" rows="4" cols="40"></textarea>
+
+    <div>
+        <h5>Selecione o funcionario</h5>
+    </div><br />
+    <div>
+        <select asp-for="Diagnostico.idDadosPessoaisFuncionario" asp-items="Funcionarios" style="height:35px;width:220px;"></select>
+    </div><br />
+    <button type="submit" class="btn btn-success btn-sm" onclick="GetJson()">Registrar</button>
+</form>
+
+
+<script>
+    function GetJson() {
+        var Mtz = [];
+        var iTotal = $(".ck_sel_nome").length;
+        for (var i = 0; i <= iTotal - 1; i++) {
+            if ($(".ck_sel_nome")[i].value) {
+                Mtz.push(
+                    {
+                        parte: $(".ck_sel_nome")[i].value
+                    }
+                );
+            }
+        }
+
+        $("#JsonCheckin").val(JSON.stringify(Mtz));
+    }
+
+</script>

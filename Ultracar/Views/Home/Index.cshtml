@@ -1,0 +1,16 @@
+﻿@{
+    @model DadosPessoais;
+    ViewData["Title"] = "Home Page";
+    var Clientes = (List<SelectListItem>)(@ViewData["Clientes"]);
+}
+<form asp-action="SelecionarCarro" asp-controller="Home">
+    <div>
+        <h2>Selecione o cliente</h2>
+    </div><br />
+    <div>
+        <select asp-for="idDadosPessoais" asp-items="Clientes" style="height:35px;width:220px;"></select>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success" style="margin-top:20px;">Confirmar</button>
+    </div>
+</form>

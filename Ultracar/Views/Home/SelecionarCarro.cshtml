@@ -1,0 +1,38 @@
+﻿
+@{
+       var CarrosCliente = (List<CarroClienteView>)(@ViewData["Carros"]);
+}
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>idCarro</td>
+            <td>idCarroCliente</td>
+            <td>Proprietário</td>
+            <td>Marca</td>
+            <td>Modelo</td>
+            <td>Cor</td>
+            <td>Aon de Fabricação</td>
+            <td>Ano do Modelo</td>
+            <td>Selecione o Carro</td>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in CarrosCliente)
+        {
+        <tr>
+            <td>@item.idCarro</td>
+            <td>@item.idCarroCliente</td>
+            <td>@item.Proprietario</td>
+            <td>@item.Marca</td>
+            <td>@item.Modelo</td>
+            <td>@item.Cor</td>
+            <td>@item.AnoFabricacao</td>
+            <td>@item.AnoModelo</td>
+            <td><button class="btn btn-block btn-primary" type="submit" onclick="window.location.href = '/home/Servico?idCarro=@item.idCarro&idCarroCliente=@item.idCarroCliente'">Selecionar Carro</button></td>            
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,20 @@
+﻿@model DadosPessoais
+
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>NOME</td>
+            <td>ID</td>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                @*<td style="width:80px;"><button class="btn btn-default" onclick="registrar(@item.Id.ToString())">Editar</button></td>
+                    <td style="width:80px;"><button class="btn btn-danger" onclick="excluir(@item.Id.ToString())">Excluir</button></td>*@
+                <td>@Model.Nome.ToString()</td>
+                <td>@Model.idDadosPessoais.ToString()</td>
+            </tr>
+    </tbody>
+</table>
+
